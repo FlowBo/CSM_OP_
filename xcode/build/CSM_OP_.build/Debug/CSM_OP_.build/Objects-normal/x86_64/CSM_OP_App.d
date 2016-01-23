@@ -694,4 +694,7 @@ dependencies: \
   ../../../Cinder/include/boost/intrusive/list_hook.hpp \
   ../../../Cinder/include/boost/intrusive/detail/list_node.hpp \
   ../../../Cinder/include/boost/intrusive/circular_list_algorithms.hpp \
-  ../../../Cinder/include/boost/intrusive/detail/list_iterator.hpp
+  ../../../Cinder/include/boost/intrusive/detail/list_iterator.hpp \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/visualController.hpp \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/camera.hpp \
+  ../../../Cinder/include/cinder/Capture.h

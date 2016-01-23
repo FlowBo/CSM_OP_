@@ -18,6 +18,8 @@
 		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
 		078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D51C53BFFE005743D9 /* tinyG.cpp */; };
 		078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D81C53C02C005743D9 /* oscControll.cpp */; };
+		078369DF1C53CFF9005743D9 /* visualController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369DD1C53CFF9005743D9 /* visualController.cpp */; };
+		078369E21C53D13A005743D9 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369E01C53D13A005743D9 /* camera.cpp */; };
 		1699CD1F5AF24E968D3EF8A7 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = DB120A9EEDF34C1699C7AFBA /* CinderApp.icns */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37966C14D884FE980B064B6 /* Osc.cpp */; };
@@ -40,6 +42,10 @@
 		078369D61C53BFFE005743D9 /* tinyG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = tinyG.hpp; path = ../src/tinyG.hpp; sourceTree = "<group>"; };
 		078369D81C53C02C005743D9 /* oscControll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = oscControll.cpp; path = ../src/oscControll.cpp; sourceTree = "<group>"; };
 		078369D91C53C02C005743D9 /* oscControll.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = oscControll.hpp; path = ../src/oscControll.hpp; sourceTree = "<group>"; };
+		078369DD1C53CFF9005743D9 /* visualController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = visualController.cpp; path = ../src/visualController.cpp; sourceTree = "<group>"; };
+		078369DE1C53CFF9005743D9 /* visualController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = visualController.hpp; path = ../src/visualController.hpp; sourceTree = "<group>"; };
+		078369E01C53D13A005743D9 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../src/camera.cpp; sourceTree = "<group>"; };
+		078369E11C53D13A005743D9 /* camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = camera.hpp; path = ../src/camera.hpp; sourceTree = "<group>"; };
 		0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = Cairo.cpp; path = ../../../Cinder/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1063DE0BDA654072ADF8142C /* Osc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Osc.h; path = ../../../Cinder/blocks/OSC/src/Osc.h; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */,
+				078369E01C53D13A005743D9 /* camera.cpp */,
+				078369DD1C53CFF9005743D9 /* visualController.cpp */,
 				078369D51C53BFFE005743D9 /* tinyG.cpp */,
 				078369D81C53C02C005743D9 /* oscControll.cpp */,
 			);
@@ -160,6 +168,8 @@
 				92F5919A9D334F7587E8C47A /* Resources.h */,
 				A014D97664604140B9FC76CF /* CSM_OP__Prefix.pch */,
 				078369D91C53C02C005743D9 /* oscControll.hpp */,
+				078369DE1C53CFF9005743D9 /* visualController.hpp */,
+				078369E11C53D13A005743D9 /* camera.hpp */,
 				078369D61C53BFFE005743D9 /* tinyG.hpp */,
 			);
 			name = Headers;
@@ -295,9 +305,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078369E21C53D13A005743D9 /* camera.cpp in Sources */,
 				C529C47D0D4841DCABB9F15D /* CSM_OP_App.cpp in Sources */,
 				078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */,
 				078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */,
+				078369DF1C53CFF9005743D9 /* visualController.cpp in Sources */,
 				9E1287929BE946E9ACF88D07 /* Cairo.cpp in Sources */,
 				756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */,
 			);
