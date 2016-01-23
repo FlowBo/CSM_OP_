@@ -16,15 +16,13 @@
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
 		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
-		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		CAD3A73CF5CE4CA99E578027 /* Osc.h in Headers */ = {isa = PBXBuildFile; fileRef = 1063DE0BDA654072ADF8142C /* Osc.h */; };
-		756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37966C14D884FE980B064B6 /* Osc.cpp */; };
-		C363943A83414B61BA350E6F /* Cairo.h in Headers */ = {isa = PBXBuildFile; fileRef = 34AEC1285C4E419FA04AD85E /* Cairo.h */; };
-		9E1287929BE946E9ACF88D07 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */; };
-		983DDA9153C64D87926DF16B /* CSM_OP__Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A014D97664604140B9FC76CF /* CSM_OP__Prefix.pch */; };
+		078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D51C53BFFE005743D9 /* tinyG.cpp */; };
+		078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D81C53C02C005743D9 /* oscControll.cpp */; };
 		1699CD1F5AF24E968D3EF8A7 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = DB120A9EEDF34C1699C7AFBA /* CinderApp.icns */; };
-		D1633DB1F38E4CE689A0FBE2 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 92F5919A9D334F7587E8C47A /* Resources.h */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37966C14D884FE980B064B6 /* Osc.cpp */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9E1287929BE946E9ACF88D07 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */; };
 		C529C47D0D4841DCABB9F15D /* CSM_OP_App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */; };
 /* End PBXBuildFile section */
 
@@ -38,20 +36,24 @@
 		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		078369D51C53BFFE005743D9 /* tinyG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyG.cpp; path = ../src/tinyG.cpp; sourceTree = "<group>"; };
+		078369D61C53BFFE005743D9 /* tinyG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = tinyG.hpp; path = ../src/tinyG.hpp; sourceTree = "<group>"; };
+		078369D81C53C02C005743D9 /* oscControll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = oscControll.cpp; path = ../src/oscControll.cpp; sourceTree = "<group>"; };
+		078369D91C53C02C005743D9 /* oscControll.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = oscControll.hpp; path = ../src/oscControll.hpp; sourceTree = "<group>"; };
+		0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = Cairo.cpp; path = ../../../Cinder/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1063DE0BDA654072ADF8142C /* Osc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Osc.h; path = ../../../Cinder/blocks/OSC/src/Osc.h; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		34AEC1285C4E419FA04AD85E /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../../Cinder/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		5F27922BBC094553A1C69D84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CSM_OP_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSM_OP_.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/CSM_OP_App.cpp; sourceTree = "<group>"; name = CSM_OP_App.cpp; };
-		92F5919A9D334F7587E8C47A /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
-		DB120A9EEDF34C1699C7AFBA /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
-		5F27922BBC094553A1C69D84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
-		A014D97664604140B9FC76CF /* CSM_OP__Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = CSM_OP__Prefix.pch; sourceTree = "<group>"; name = CSM_OP__Prefix.pch; };
-		0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../Cinder/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; name = Cairo.cpp; };
-		34AEC1285C4E419FA04AD85E /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../Cinder/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; name = Cairo.h; };
-		B37966C14D884FE980B064B6 /* Osc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../Cinder/blocks/OSC/src/Osc.cpp; sourceTree = "<group>"; name = Osc.cpp; };
-		1063DE0BDA654072ADF8142C /* Osc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../Cinder/blocks/OSC/src/Osc.h; sourceTree = "<group>"; name = Osc.h; };
+		92F5919A9D334F7587E8C47A /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		A014D97664604140B9FC76CF /* CSM_OP__Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = CSM_OP__Prefix.pch; sourceTree = "<group>"; };
+		B37966C14D884FE980B064B6 /* Osc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = Osc.cpp; path = ../../../Cinder/blocks/OSC/src/Osc.cpp; sourceTree = "<group>"; };
+		DB120A9EEDF34C1699C7AFBA /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CSM_OP_App.cpp; path = ../src/CSM_OP_App.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +78,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				0E5889E2E05E4372BD59C61C /* Cairo */,
+				FEDA89AD79F24F938E546A76 /* OSC */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */,
+				078369D51C53BFFE005743D9 /* tinyG.cpp */,
+				078369D81C53C02C005743D9 /* oscControll.cpp */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		0E5889E2E05E4372BD59C61C /* Cairo */ = {
+			isa = PBXGroup;
+			children = (
+				74CEDCFB94054E0E919E72FB /* src */,
+				5278FEFEB31D4B73AA44E0B5 /* include */,
+			);
+			name = Cairo;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -132,78 +154,13 @@
 			name = CSM_OP_;
 			sourceTree = "<group>";
 		};
-		74CEDCFB94054E0E919E72FB /* src */ = {
-			isa = PBXGroup;
-			children = (
-				0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		6713ACE7C46547169FAF07D6 /* cairo */ = {
-			isa = PBXGroup;
-			children = (
-				34AEC1285C4E419FA04AD85E /* Cairo.h */,
-			);
-			name = cairo;
-			sourceTree = "<group>";
-		};
-		C81CC8DD9C4A4C28BB5D73F2 /* cinder */ = {
-			isa = PBXGroup;
-			children = (
-				6713ACE7C46547169FAF07D6 /* cairo */,
-			);
-			name = cinder;
-			sourceTree = "<group>";
-		};
-		5278FEFEB31D4B73AA44E0B5 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				C81CC8DD9C4A4C28BB5D73F2 /* cinder */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		0E5889E2E05E4372BD59C61C /* Cairo */ = {
-			isa = PBXGroup;
-			children = (
-				74CEDCFB94054E0E919E72FB /* src */,
-				5278FEFEB31D4B73AA44E0B5 /* include */,
-			);
-			name = Cairo;
-			sourceTree = "<group>";
-		};
-		86D6C11E77CA41B0BB507395 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				B37966C14D884FE980B064B6 /* Osc.cpp */,
-				1063DE0BDA654072ADF8142C /* Osc.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		FEDA89AD79F24F938E546A76 /* OSC */ = {
-			isa = PBXGroup;
-			children = (
-				86D6C11E77CA41B0BB507395 /* src */,
-			);
-			name = OSC;
-			sourceTree = "<group>";
-		};
-		01B97315FEAEA392516A2CEA /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				0E5889E2E05E4372BD59C61C /* Cairo */,
-				FEDA89AD79F24F938E546A76 /* OSC */,
-			);
-			name = Blocks;
-			sourceTree = "<group>";
-		};
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				92F5919A9D334F7587E8C47A /* Resources.h */,
 				A014D97664604140B9FC76CF /* CSM_OP__Prefix.pch */,
+				078369D91C53C02C005743D9 /* oscControll.hpp */,
+				078369D61C53BFFE005743D9 /* tinyG.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -224,6 +181,55 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5278FEFEB31D4B73AA44E0B5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C81CC8DD9C4A4C28BB5D73F2 /* cinder */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		6713ACE7C46547169FAF07D6 /* cairo */ = {
+			isa = PBXGroup;
+			children = (
+				34AEC1285C4E419FA04AD85E /* Cairo.h */,
+			);
+			name = cairo;
+			sourceTree = "<group>";
+		};
+		74CEDCFB94054E0E919E72FB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		86D6C11E77CA41B0BB507395 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B37966C14D884FE980B064B6 /* Osc.cpp */,
+				1063DE0BDA654072ADF8142C /* Osc.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		C81CC8DD9C4A4C28BB5D73F2 /* cinder */ = {
+			isa = PBXGroup;
+			children = (
+				6713ACE7C46547169FAF07D6 /* cairo */,
+			);
+			name = cinder;
+			sourceTree = "<group>";
+		};
+		FEDA89AD79F24F938E546A76 /* OSC */ = {
+			isa = PBXGroup;
+			children = (
+				86D6C11E77CA41B0BB507395 /* src */,
+			);
+			name = OSC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +258,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CSM_OP_" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -288,6 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C529C47D0D4841DCABB9F15D /* CSM_OP_App.cpp in Sources */,
+				078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */,
+				078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */,
 				9E1287929BE946E9ACF88D07 /* Cairo.cpp in Sources */,
 				756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */,
 			);
@@ -300,17 +310,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CSM_OP__Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CSM_OP__Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -337,12 +347,12 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CSM_OP__Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NDEBUG=1",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CSM_OP__Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -364,7 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CINDER_PATH = "../../../Cinder";
+				CINDER_PATH = ../../../Cinder;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				ENABLE_TESTABILITY = YES;
@@ -377,11 +387,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/include\" ../include",
-					../../../Cinder/blocks/Cairo/include,
-					../../../Cinder/blocks/OSC/src,
-				);
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src";
 			};
 			name = Debug;
 		};
@@ -389,7 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CINDER_PATH = "../../../Cinder";
+				CINDER_PATH = ../../../Cinder;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -400,11 +406,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/include\" ../include",
-					../../../Cinder/blocks/Cairo/include,
-					../../../Cinder/blocks/OSC/src,
-				);
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src";
 			};
 			name = Release;
 		};
