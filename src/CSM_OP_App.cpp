@@ -47,12 +47,15 @@ void CSM_OP_App::update()
     vc.update();
     osc.update();
     tiny.update();
+    mFramerate = getAverageFps();
 }
 
 void CSM_OP_App::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) );
     vc.draw();
+    gl::drawString(toString(mFramerate), vec2(10,getWindowHeight()-10));
+    
 }
 void CSM_OP_App::keyDown(KeyEvent event){
     if (event.getChar() == KeyEvent::KEY_ESCAPE) {
