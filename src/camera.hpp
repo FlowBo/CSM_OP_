@@ -2,6 +2,7 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
+#include "tracking.hpp"
 
 using namespace ci;
 using namespace ci::app;
@@ -15,11 +16,12 @@ public:
     void draw();
     
 private:
-    void    calculateColors();
-    vec2    interpolateVec(dvec2 vec);
-    Color   findSurroundingColors( vec2 vec, float searchDiameter);
-    void    drawRealWorldColors();
+    void        calculateColors();
+    void        drawRealWorldColors();
     
+    vec2                interpolateVec(dvec2 vec);
+    Color               findSurroundingColors( vec2 vec, float searchDiameter);
+    tracking            tracker;
     CaptureRef			mCapture;
     gl::TextureRef		mTexture;
     Surface8uRef        mSurface;

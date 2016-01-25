@@ -4,15 +4,17 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "887CA89F496D0042A0606F2718D603009F1EC764" : 0,
     "2FA8C17CCF97862D57C83E3BF0ABD2A6EB18A4F7" : 0,
-    "AD4B458D0D225ED63FAE0155615993B7D3ECE020" : 0,
-    "887CA89F496D0042A0606F2718D603009F1EC764" : 0
+    "B7B33D1F7038A24ED62E0EBDAE2FDB0D56210107" : 0,
+    "AD4B458D0D225ED63FAE0155615993B7D3ECE020" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "49474FC7-750C-421C-BB01-EC60D104175F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "887CA89F496D0042A0606F2718D603009F1EC764" : "CSM_OP_\/",
     "2FA8C17CCF97862D57C83E3BF0ABD2A6EB18A4F7" : "",
-    "AD4B458D0D225ED63FAE0155615993B7D3ECE020" : "..\/Cinder",
-    "887CA89F496D0042A0606F2718D603009F1EC764" : "CSM_OP_\/"
+    "B7B33D1F7038A24ED62E0EBDAE2FDB0D56210107" : "..\/Cinder\/blocks\/Warping",
+    "AD4B458D0D225ED63FAE0155615993B7D3ECE020" : "..\/Cinder"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CSM_OP_",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -32,6 +34,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cinder\/Cinder.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AD4B458D0D225ED63FAE0155615993B7D3ECE020"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/paulhoux\/Cinder-Warping.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B7B33D1F7038A24ED62E0EBDAE2FDB0D56210107"
     }
   ]
 }

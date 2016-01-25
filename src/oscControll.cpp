@@ -35,6 +35,14 @@ void oscControll::setup( tinyG &t ){
             tiny->sendGcode("~");
         }
     });
+    mReceiver.setListener( "/move/home", [&] ( const osc::Message &msg ) {
+        tiny -> sendGcode("g28");
+    });
+    mReceiver.setListener( "/offset/module", [&] ( const osc::Message &msg ) {
+//        tiny -> sendGcode("g28");
+        console() << "set Module offset of: " << atoi(msg[0].string().c_str()) << " to current Position." << endl;
+        
+    });
     mReceiver.bind();
     mReceiver.listen();
 }

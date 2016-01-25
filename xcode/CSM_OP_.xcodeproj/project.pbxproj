@@ -20,6 +20,11 @@
 		078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D81C53C02C005743D9 /* oscControll.cpp */; };
 		078369DF1C53CFF9005743D9 /* visualController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369DD1C53CFF9005743D9 /* visualController.cpp */; };
 		078369E21C53D13A005743D9 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369E01C53D13A005743D9 /* camera.cpp */; };
+		07BC2F271C5624080044945A /* tracking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BC2F251C5624080044945A /* tracking.cpp */; };
+		07BC2F441C5624630044945A /* Warp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BC2F311C5624630044945A /* Warp.cpp */; };
+		07BC2F451C5624630044945A /* WarpBilinear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BC2F321C5624630044945A /* WarpBilinear.cpp */; };
+		07BC2F461C5624630044945A /* WarpPerspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BC2F331C5624630044945A /* WarpPerspective.cpp */; };
+		07BC2F471C5624630044945A /* WarpPerspectiveBilinear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BC2F341C5624630044945A /* WarpPerspectiveBilinear.cpp */; };
 		1699CD1F5AF24E968D3EF8A7 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = DB120A9EEDF34C1699C7AFBA /* CinderApp.icns */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37966C14D884FE980B064B6 /* Osc.cpp */; };
@@ -46,6 +51,13 @@
 		078369DE1C53CFF9005743D9 /* visualController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = visualController.hpp; path = ../src/visualController.hpp; sourceTree = "<group>"; };
 		078369E01C53D13A005743D9 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../src/camera.cpp; sourceTree = "<group>"; };
 		078369E11C53D13A005743D9 /* camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = camera.hpp; path = ../src/camera.hpp; sourceTree = "<group>"; };
+		07BC2F251C5624080044945A /* tracking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tracking.cpp; path = ../src/tracking.cpp; sourceTree = "<group>"; };
+		07BC2F261C5624080044945A /* tracking.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = tracking.hpp; path = ../src/tracking.hpp; sourceTree = "<group>"; };
+		07BC2F2C1C5624630044945A /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
+		07BC2F311C5624630044945A /* Warp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Warp.cpp; sourceTree = "<group>"; };
+		07BC2F321C5624630044945A /* WarpBilinear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WarpBilinear.cpp; sourceTree = "<group>"; };
+		07BC2F331C5624630044945A /* WarpPerspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WarpPerspective.cpp; sourceTree = "<group>"; };
+		07BC2F341C5624630044945A /* WarpPerspectiveBilinear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WarpPerspectiveBilinear.cpp; sourceTree = "<group>"; };
 		0EBB76FD42F24DACA79A71C1 /* Cairo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = Cairo.cpp; path = ../../../Cinder/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1063DE0BDA654072ADF8142C /* Osc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Osc.h; path = ../../../Cinder/blocks/OSC/src/Osc.h; sourceTree = "<group>"; };
@@ -87,10 +99,40 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				07BC2F281C5624630044945A /* Warping */,
 				0E5889E2E05E4372BD59C61C /* Cairo */,
 				FEDA89AD79F24F938E546A76 /* OSC */,
 			);
 			name = Blocks;
+			sourceTree = "<group>";
+		};
+		07BC2F281C5624630044945A /* Warping */ = {
+			isa = PBXGroup;
+			children = (
+				07BC2F2B1C5624630044945A /* include */,
+				07BC2F301C5624630044945A /* src */,
+			);
+			name = Warping;
+			path = ../../../Cinder/blocks/Warping;
+			sourceTree = "<group>";
+		};
+		07BC2F2B1C5624630044945A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				07BC2F2C1C5624630044945A /* Warp.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		07BC2F301C5624630044945A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				07BC2F311C5624630044945A /* Warp.cpp */,
+				07BC2F321C5624630044945A /* WarpBilinear.cpp */,
+				07BC2F331C5624630044945A /* WarpPerspective.cpp */,
+				07BC2F341C5624630044945A /* WarpPerspectiveBilinear.cpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Source */ = {
@@ -98,6 +140,7 @@
 			children = (
 				E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */,
 				078369E01C53D13A005743D9 /* camera.cpp */,
+				07BC2F251C5624080044945A /* tracking.cpp */,
 				078369DD1C53CFF9005743D9 /* visualController.cpp */,
 				078369D51C53BFFE005743D9 /* tinyG.cpp */,
 				078369D81C53C02C005743D9 /* oscControll.cpp */,
@@ -170,6 +213,7 @@
 				078369D91C53C02C005743D9 /* oscControll.hpp */,
 				078369DE1C53CFF9005743D9 /* visualController.hpp */,
 				078369E11C53D13A005743D9 /* camera.hpp */,
+				07BC2F261C5624080044945A /* tracking.hpp */,
 				078369D61C53BFFE005743D9 /* tinyG.hpp */,
 			);
 			name = Headers;
@@ -305,13 +349,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07BC2F271C5624080044945A /* tracking.cpp in Sources */,
+				07BC2F451C5624630044945A /* WarpBilinear.cpp in Sources */,
 				078369E21C53D13A005743D9 /* camera.cpp in Sources */,
 				C529C47D0D4841DCABB9F15D /* CSM_OP_App.cpp in Sources */,
 				078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */,
 				078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */,
 				078369DF1C53CFF9005743D9 /* visualController.cpp in Sources */,
+				07BC2F461C5624630044945A /* WarpPerspective.cpp in Sources */,
 				9E1287929BE946E9ACF88D07 /* Cairo.cpp in Sources */,
+				07BC2F471C5624630044945A /* WarpPerspectiveBilinear.cpp in Sources */,
 				756DFCFD557B45E38787EC7E /* Osc.cpp in Sources */,
+				07BC2F441C5624630044945A /* Warp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +394,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CSM_OP_;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src ../../../Cinder/blocks/Warping/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -378,6 +428,7 @@
 				PRODUCT_NAME = CSM_OP_;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src ../../../Cinder/blocks/Warping/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -399,7 +450,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src ../../../Cinder/blocks/Warping/include";
 			};
 			name = Debug;
 		};
@@ -418,7 +469,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/Cairo/include ../../../Cinder/blocks/OSC/src ../../../Cinder/blocks/Warping/include";
 			};
 			name = Release;
 		};

@@ -9,10 +9,14 @@ void camera::setup(){
         console() <<  "Failed to init capture " << &exc << endl;
     }
     //init Keystone (need to be replaced by manual Keying)
-    mTopLeft        = dvec2(50,50);
-    mTopRight       = dvec2(getWindowWidth()-50,50);
-    mBottomLeft     = dvec2(50,getWindowHeight()-50);
-    mBottomRight    = dvec2(getWindowWidth()-50,getWindowHeight()-50);
+    tracker.setup();
+    vector<dvec2> corners = tracker.getKeystone();
+    mTopLeft = corners.at(0);
+    mTopRight = corners.at(1);
+    mBottomRight = corners.at(2);
+    mBottomLeft = corners.at(3);
+   
+    
     //init Color Vectors
     for (double xP = 0; xP < 30; xP += 1) {
         for (double yP = 0; yP < 30; yP += 1) {
@@ -31,6 +35,14 @@ void camera::update(){
         else {
             mTexture->update( *mCapture->getSurface() );
         }
+        if (tracker.newKeystone()) {
+            vector<dvec2> corners = tracker.getKeystone();
+            mTopLeft = corners.at(0);
+            mTopRight = corners.at(1);
+            mBottomRight = corners.at(2);
+            mBottomLeft = corners.at(3);
+        }
+        
         calculateColors();
     }
 }
@@ -87,6 +99,7 @@ void camera::draw(){
         gl::draw( mTexture );
     }
     drawRealWorldColors();
+    tracker.draw();
 }
 
 void camera::drawRealWorldColors(){
