@@ -88,20 +88,8 @@ void CSM_OP_App::keyDown(KeyEvent event){
         for(int i = 0; i < 1000; i++){
             outtxt << toString( random()*10) << "\n" << flush;
         }
-        
         outtxt.close();
-        
-        // Save it as binary
-        ofstream outbin( getAppPath().string() + "binary.bin", ios::binary );
-        
-        for(int i = 0; i < 1000; i++){
-            string s = toString( random()*10) + "\n";
-            outbin.write( reinterpret_cast <const char*> (&s), sizeof( s ) );
         }
-        
-//        outbin.write( reinterpret_cast <const char*> (&year), sizeof( year ) );
-        outbin.close();
-    }
 }
 
 CINDER_APP( CSM_OP_App, RendererGl(), [&]( App::Settings *settings ){
