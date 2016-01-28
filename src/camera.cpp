@@ -4,9 +4,11 @@ void camera::setup(){
     try {
         mCapture = Capture::create( 1280, 720 );
         mCapture->start();
+        mUseCamera = true;
     }
     catch( ci::Exception &exc ) {
         console() <<  "Failed to init capture " << &exc << endl;
+        mUseCamera = false;
     }
     //init Keystone (need to be replaced by manual Keying)
     tracker.setup();

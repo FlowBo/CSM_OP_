@@ -7,6 +7,7 @@ public:
     void setup();
     void update();
     void draw();
+    Surface8uRef getCameraImage(){return cam.getCameraImage();};
     
 private:
     camera cam;

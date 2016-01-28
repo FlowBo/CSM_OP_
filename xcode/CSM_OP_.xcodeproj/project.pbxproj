@@ -16,6 +16,7 @@
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
 		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
+		0739814B1C5A2CB3007A632A /* vConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073981491C5A2CB3007A632A /* vConsole.cpp */; };
 		078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D51C53BFFE005743D9 /* tinyG.cpp */; };
 		078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369D81C53C02C005743D9 /* oscControll.cpp */; };
 		078369DF1C53CFF9005743D9 /* visualController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078369DD1C53CFF9005743D9 /* visualController.cpp */; };
@@ -43,6 +44,8 @@
 		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		073981491C5A2CB3007A632A /* vConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vConsole.cpp; path = ../src/vConsole.cpp; sourceTree = "<group>"; };
+		0739814A1C5A2CB3007A632A /* vConsole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vConsole.hpp; path = ../src/vConsole.hpp; sourceTree = "<group>"; };
 		078369D51C53BFFE005743D9 /* tinyG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyG.cpp; path = ../src/tinyG.cpp; sourceTree = "<group>"; };
 		078369D61C53BFFE005743D9 /* tinyG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = tinyG.hpp; path = ../src/tinyG.hpp; sourceTree = "<group>"; };
 		078369D81C53C02C005743D9 /* oscControll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = oscControll.cpp; path = ../src/oscControll.cpp; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				E181BC47CF2A445D8D5A6B9B /* CSM_OP_App.cpp */,
+				073981491C5A2CB3007A632A /* vConsole.cpp */,
 				078369E01C53D13A005743D9 /* camera.cpp */,
 				07BC2F251C5624080044945A /* tracking.cpp */,
 				078369DD1C53CFF9005743D9 /* visualController.cpp */,
@@ -215,6 +219,7 @@
 				078369E11C53D13A005743D9 /* camera.hpp */,
 				07BC2F261C5624080044945A /* tracking.hpp */,
 				078369D61C53BFFE005743D9 /* tinyG.hpp */,
+				0739814A1C5A2CB3007A632A /* vConsole.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				078369E21C53D13A005743D9 /* camera.cpp in Sources */,
 				C529C47D0D4841DCABB9F15D /* CSM_OP_App.cpp in Sources */,
 				078369D71C53BFFE005743D9 /* tinyG.cpp in Sources */,
+				0739814B1C5A2CB3007A632A /* vConsole.cpp in Sources */,
 				078369DA1C53C02C005743D9 /* oscControll.cpp in Sources */,
 				078369DF1C53CFF9005743D9 /* visualController.cpp in Sources */,
 				07BC2F461C5624630044945A /* WarpPerspective.cpp in Sources */,

@@ -14,7 +14,7 @@ public:
     void setup();
     void update();
     void draw();
-    
+    Surface8uRef getCameraImage(){return mSurface;};
 private:
     void        calculateColors();
     void        drawRealWorldColors();
@@ -25,6 +25,7 @@ private:
     CaptureRef			mCapture;
     gl::TextureRef		mTexture;
     Surface8uRef        mSurface;
+    bool                mUseCamera;
     
     //Keystone
     dvec2 mTopLeft;

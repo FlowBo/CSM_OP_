@@ -21,12 +21,17 @@ using namespace ci::app;
 class tinyG{
 public:
     tinyG();
+    tinyG(int enableTinyg);
     void setup();
     void update();
     void sendGcode(std::string t );
     void draw();
     void parseJSON( string input );
     void move(string s);
+    
+    void loadModuleOffsets();
+    void saveModuleOffsets();
+    
     
     bool		mSendSerialMessage;
     SerialRef	mSerial;
@@ -36,6 +41,9 @@ public:
     bool        mFeedhold;
     double      mLastRead, mLastUpdate;
     float       mStepSize;
+    JsonTree    mJson;
+    bool        mUseTinyG;
+    
     
     //Getter Functions
     bool    isBusy() {return mBusy;};
@@ -49,17 +57,25 @@ public:
     //setter functions
     void setFeedhold(bool b){mFeedhold = b;};
     void setStepSize(float size){mStepSize = size;};
+    void setModuleOffest(int id);
     
 private:
     bool    mBusy;
     int     statusInterval = READ_INTERVAL;
     
     //TinyG status
-    float xPos  = 0;
-    float yPos  = 0;
-    float zPos  = 0;
-    float aPos  = 0;
-    int stat    = 3;
-    int lastStat;
+    float   xPos  = 0;
+    float   yPos  = 0;
+    float   zPos  = 0;
+    float   aPos  = 0;
+    int     stat  = 3;
+    int     lastStat;
+    
+    vector<dvec2> mModulPositions;
     
 };
+
+
+
+
+

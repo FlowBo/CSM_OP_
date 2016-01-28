@@ -36,7 +36,7 @@ void oscControll::setup( tinyG &t ){
         }
     });
     mReceiver.setListener( "/move/home", [&] ( const osc::Message &msg ) {
-        tiny -> sendGcode("g28");
+        tiny -> sendGcode("g28.2x0y0z0");
     });
     mReceiver.setListener( "/offset/module", [&] ( const osc::Message &msg ) {
 //        tiny -> sendGcode("g28");
