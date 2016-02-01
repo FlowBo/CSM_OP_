@@ -19,17 +19,22 @@ using namespace std;
 
 
 class oscControll{
+public:
+    oscControll() : mReceiver( PORT ){};
+    void    setup( tinyG &t );
+    void    update();
+    float   stepSize;
+    bool    hasNewOffset(){return newOffset;};
+    int     getNewOffsetId();
+
 private:
 #if USE_UDP
     osc::ReceiverUdp mReceiver;
 #else
     osc::ReceiverTcp mReceiver;
 #endif
-
-    tinyG               *tiny;
-public:
-    oscControll() : mReceiver( PORT ){};
-    void    setup( tinyG &t );
-    void    update();
-    float   stepSize;
+    
+    tinyG   *tiny;
+    bool    newOffset;
+    int     newOffsetId;
 };

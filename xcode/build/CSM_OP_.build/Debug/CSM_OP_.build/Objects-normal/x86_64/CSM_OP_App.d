@@ -1,5 +1,6 @@
 dependencies: \
   /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/CSM_OP_App.cpp \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/CSM_OP_App.h \
   ../../../Cinder/include/cinder/app/RendererGl.h \
   ../../../Cinder/blocks/Cairo/include/cinder/cairo/Cairo.h \
   ../../../Cinder/include/cinder/Function.h \
@@ -695,9 +696,11 @@ dependencies: \
   ../../../Cinder/include/boost/intrusive/detail/list_node.hpp \
   ../../../Cinder/include/boost/intrusive/circular_list_algorithms.hpp \
   ../../../Cinder/include/boost/intrusive/detail/list_iterator.hpp \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/xcode/GUI.h \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/vConsole.hpp \
   /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/visualController.hpp \
   /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/camera.hpp \
   ../../../Cinder/include/cinder/Capture.h \
   /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/tracking.hpp \
   /Users/florianborn/dev/Cinder/blocks/Warping/include/Warp.h \
-  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/vConsole.hpp
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/xcode/MainController.hpp

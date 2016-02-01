@@ -690,4 +690,6 @@ dependencies: \
   ../../../Cinder/include/boost/intrusive/detail/list_node.hpp \
   ../../../Cinder/include/boost/intrusive/circular_list_algorithms.hpp \
   ../../../Cinder/include/boost/intrusive/detail/list_iterator.hpp \
-  ../../../Cinder/include/cinder/app/RendererGl.h
+  ../../../Cinder/include/cinder/app/RendererGl.h \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/xcode/GUI.h \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/vConsole.hpp

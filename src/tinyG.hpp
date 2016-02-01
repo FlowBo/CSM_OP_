@@ -1,11 +1,12 @@
 #pragma once
-
+//#include "CSM_OP_App.h"
 #include "cinder/app/App.h"
 #include "cinder/Serial.h"
 #include "cinder/Log.h"
 #include "cinder/Text.h"
 #include "cinder/Json.h"
 #include "cinder/app/RendererGl.h"
+#include "GUI.h"
 
 #include <sstream>
 
@@ -28,7 +29,10 @@ public:
     void draw();
     void parseJSON( string input );
     void move(string s);
+    void gotoModule(int id);
     
+    bool replace(std::string& str, const std::string& from, const std::string& to);
+    void reformatStatusReport(string &s);
     void loadModuleOffsets();
     void saveModuleOffsets();
     
@@ -43,6 +47,9 @@ public:
     float       mStepSize;
     JsonTree    mJson;
     bool        mUseTinyG;
+    bool        mWaitForStatus;
+    
+    vector<string> mSerialMessages;
     
     
     //Getter Functions
@@ -58,6 +65,8 @@ public:
     void setFeedhold(bool b){mFeedhold = b;};
     void setStepSize(float size){mStepSize = size;};
     void setModuleOffest(int id);
+    void waitForStatusReport(bool b);
+    
     
 private:
     bool    mBusy;

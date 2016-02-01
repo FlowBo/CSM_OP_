@@ -9,6 +9,8 @@
 #include "oscControll.hpp"
 
 void oscControll::setup( tinyG &t ){
+    newOffset   = false;
+    newOffsetId = 99;
     console() << "OSC is listening to PORT: "  << PORT << endl;
     tiny = &t;
     mReceiver.setListener( "/move/x", [&] ( const osc::Message &msg ) {
@@ -24,8 +26,15 @@ void oscControll::setup( tinyG &t ){
         tiny -> move("g0z");
     });
     mReceiver.setListener( "/move/a", [&] ( const osc::Message &msg ) {
-        tiny -> setStepSize( msg[0].flt() );
+        tiny -> setStepSize( msg[0].flt() * 360.0 );
         tiny -> move("g0a");
+    });
+    mReceiver.setListener( "/info/statusReport", [&] ( const osc::Message &msg ) {
+        tiny -> waitForStatusReport(true);
+        tiny -> sendGcode("$sr");
+    });
+    mReceiver.setListener( "/move/goto", [&] ( const osc::Message &msg ) {
+        tiny->gotoModule(std::atoi(msg[0].string().c_str()));
     });
     mReceiver.setListener( "/control/hold", [&] ( const osc::Message &msg ) {
         tiny->setFeedhold( !tiny->feedhold() );
@@ -40,11 +49,17 @@ void oscControll::setup( tinyG &t ){
     });
     mReceiver.setListener( "/offset/module", [&] ( const osc::Message &msg ) {
 //        tiny -> sendGcode("g28");
-        console() << "set Module offset of: " << atoi(msg[0].string().c_str()) << " to current Position." << endl;
-        
+//        tiny->setModuleOffest(std::atoi(msg[0].string().c_str()));
+        newOffset = std::atoi(msg[0].string().c_str());
+        newOffset = true;
     });
     mReceiver.bind();
     mReceiver.listen();
+}
+
+int oscControll::getNewOffsetId(){
+    newOffset = false;
+    return newOffsetId;
 }
 
 void oscControll::update(){

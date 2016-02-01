@@ -113,6 +113,7 @@ void tracking::keyDown( KeyEvent event )
                 break;
             case KeyEvent::KEY_f:
                 // toggle full screen
+                mNewKeystone = true;
                 setFullScreen( !isFullScreen() );
                 break;
             case KeyEvent::KEY_w:

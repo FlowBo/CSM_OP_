@@ -3,13 +3,24 @@
 
 
 void visualController::setup(){
-    cam.setup();
+    mCam.setup();
+    mTracker.setup();
+    mCam.setKeystone(mTracker.getKeystone());
 }
 
 void visualController::update(){
-    cam.update();
+    mCam.update();
+    mTracker.update();
+    if(mTracker.newKeystone()){
+        mCam.setKeystone(mTracker.getKeystone());
+    }
 }
 
 void visualController::draw(){
-    cam.draw();
+    mCam.draw();
+    mTracker.draw();
+}
+
+Color visualController::getColorOfMirror(int id){
+    return mCam.getColorOfMirror(id);
 }

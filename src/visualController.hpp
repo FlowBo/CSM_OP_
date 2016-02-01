@@ -1,5 +1,6 @@
+#pragma once
 #include "camera.hpp"
-
+#include "tracking.hpp"
 
 class visualController{
 public:
@@ -7,8 +8,11 @@ public:
     void setup();
     void update();
     void draw();
-    Surface8uRef getCameraImage(){return cam.getCameraImage();};
+    
+    Color           getColorOfMirror(int id);
+    Surface8uRef    getCameraImage(){return mCam.getCameraImage();};
     
 private:
-    camera cam;
+    camera      mCam;
+    tracking    mTracker;
 };
