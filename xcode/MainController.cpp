@@ -110,16 +110,19 @@ void MainController::calcMirrorPosPerModul()
             tempPos.clear();
         }
     }
-    int c = 0;
-    for(vector<dvec2>::iterator iter = mMirrorPosition.begin(); iter != mMirrorPosition.end();++iter)
-    {
-        console() << mMirrorPosition.at(c) << endl;
-        if ((c+1) % 30 == 0) {
-            console() << "---------" << endl;
-        }
-        c++;
-    }
     
+    //PRINT ALL MIRROR POSITIONS
+    
+//    int c = 0;
+//    for(vector<dvec2>::iterator iter = mMirrorPosition.begin(); iter != mMirrorPosition.end();++iter)
+//    {
+//        console() << mMirrorPosition.at(c) << endl;
+//        if ((c+1) % 30 == 0) {
+//            console() << "---------" << endl;
+//        }
+//        c++;
+//    }
+//    
 }
 
 

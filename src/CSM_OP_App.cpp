@@ -3,6 +3,8 @@
 
 void CSM_OP_App::setup()
 {
+    roundTest = (int)10.92312312;
+    console() << roundTest << endl;
     vconsole.setup();
     controller.setup();
     value = 10;

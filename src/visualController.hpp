@@ -1,6 +1,13 @@
 #pragma once
+#include "cinder/app/App.h"
 #include "camera.hpp"
 #include "tracking.hpp"
+#include "Img.hpp"
+#include "GUI.h"
+using namespace ci;
+using namespace ci::app;
+using namespace std;
+
 
 class visualController{
 public:
@@ -13,6 +20,13 @@ public:
     Surface8uRef    getCameraImage(){return mCam.getCameraImage();};
     
 private:
+    
+    float hue;
+    float sat;
+    float val;
     camera      mCam;
     tracking    mTracker;
+    Img         mImage;
+    void colorDifference(int id);
+    
 };

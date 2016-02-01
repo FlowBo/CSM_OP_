@@ -37,4 +37,5 @@ public:
     
     float   mFramerate;
     Font    mFont;
+    int     roundTest;
 };
