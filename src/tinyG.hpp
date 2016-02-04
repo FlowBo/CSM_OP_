@@ -30,9 +30,6 @@ public:
     void parseJSON( string input );
     void move(string s);
     void gotoModule(int id);
-    
-    bool replace(std::string& str, const std::string& from, const std::string& to);
-    void reformatStatusReport(string &s);
     void loadModuleOffsets();
     void saveModuleOffsets();
     
@@ -48,12 +45,15 @@ public:
     JsonTree    mJson;
     bool        mUseTinyG;
     bool        mWaitForStatus;
+
     
     vector<string> mSerialMessages;
     
+    void getNewStatusreport();
     
     //Getter Functions
-    bool    isBusy() {return mBusy;};
+    bool    isBusy();
+    void    setBusy();
     bool    feedhold() {return mFeedhold;};
     float   getXPos() {return xPos;};
     float   getYPos() {return yPos;};

@@ -48,9 +48,8 @@ void tinyG::setup(){
     }
     if (mUseTinyG) {
         mSerial->flush();
+        getNewStatusreport();
     }
-    
-    
 }
 
 void tinyG::loadModuleOffsets(){
@@ -59,7 +58,6 @@ void tinyG::loadModuleOffsets(){
         mModulPositions.clear();
         for (auto &module : mJson) {
             double id = module["id"].getValue<int>();
-            
             double x = module["xPos"].getValue<double>();
             double y = module["yPos"].getValue<double>();
             dvec2 position = dvec2(x,y);
@@ -70,7 +68,6 @@ void tinyG::loadModuleOffsets(){
             }else{
                 ss << "id_" << id << " - " << position;
             }
-            
             vconsole.print(ss.str());
             value = 0;
         }
@@ -98,69 +95,53 @@ void tinyG::update(){
             try{
                 if(mWaitForStatus){
                     mLastString = mSerial -> readStringUntil( '\n', BUFSIZE );
-                    reformatStatusReport(mLastString);
+                    //                    reformatStatusReport(mLastString);
+                    parseJSON(mLastString);
+                    stringstream ss;
+                    ss << "x: " << xPos;
+                    vconsole.print(ss.str());
+                    ss.str("");
+                    ss << "y: " << yPos;
+                    vconsole.print(ss.str());
+                    ss.str("");
+                    ss << "z: " << zPos;
+                    vconsole.print(ss.str());
+                    ss.str("");
+                    ss << "a: " << aPos;
+                    vconsole.print(ss.str());
+                    ss.str("");
+                    ss << "stat: " << stat;
+                    vconsole.print(ss.str());
+                    vconsole.print("-------------");
+                    waitForStatusReport(false);
                 }else{
                     mLastString = mSerial -> readStringUntil( '\n', BUFSIZE );
                     parseJSON(mLastString);
                 }
+                
+                
             }
             catch( SerialTimeoutExc &exc ) {
                 CI_LOG_EXCEPTION( "timeout", exc );
             }
         }
     }
+    //    if(stat == 3 && mBusy){
+    //        mBusy = false;
+    //    }
+    //    vconsole.print(to_string(stat));
 }
 
-bool tinyG::replace(std::string& str, const std::string& from, const std::string& to) {
-    size_t start_pos = str.find(from);
-    if(start_pos == std::string::npos)
-        return false;
-    str.replace(start_pos, from.length(), to);
-    return true;
-}
-
-void tinyG::reformatStatusReport(string &s){
-    replace(mLastString, "mm", "");
-    replace(mLastString, "deg", "");
-    replace(mLastString, "position", "");
-    mLastString.erase(std::remove(mLastString.begin(), mLastString.end(), ' '), mLastString.end());
-    mLastString.erase(std::remove(mLastString.begin(), mLastString.end(), '\n'), mLastString.end());
-    vector<string> strings = split(mLastString,':');
-    if(strings.at(0) == "X"){
-        xPos =  stof(strings.at(1));
-    }
-    if(strings.at(0) == "Y"){
-        yPos =  stof(strings.at(1));
-    }
-    if(strings.at(0) == "Z"){
-        zPos =  stof(strings.at(1));
-    }
-    if(strings.at(0) == "A"){
-        aPos =  stof(strings.at(1));
-    }
-    if(strings.at(0) == "Machinestate"){
-        sendGcode("{ej:1}");
-        waitForStatusReport(false);
-        stringstream ss;
-        ss << "x: " << xPos;
-        vconsole.print(ss.str());
-        ss.str("");
-        ss << "y: " << yPos;
-        vconsole.print(ss.str());
-        ss.str("");
-        ss << "z: " << zPos;
-        vconsole.print(ss.str());
-        ss.str("");
-        ss << "a: " << aPos;
-        vconsole.print(ss.str());
-        vconsole.print("-------------");
-    }
+void tinyG::getNewStatusreport(){
+    waitForStatusReport(true);
+    sendGcode("{sr:{posx:t,posy:t,posz:t,posa:t,stat:t}}");
 }
 
 
 void tinyG::sendGcode(string t){
-//    mMessage = t;
+    mMessage = t;
     mSerialMessages.push_back(t);
+    mBusy = true;
 }
 
 void tinyG::move(string s){
@@ -192,8 +173,8 @@ void tinyG::waitForStatusReport(bool b)
 
 void tinyG::parseJSON( string input )
 {
-    console() << "input: " <<input << endl;
     
+//    console() << "input: " << input << endl;
     try {
         JsonTree json(  input  );
         if (json.hasChild("sr")) {
@@ -210,10 +191,39 @@ void tinyG::parseJSON( string input )
                 aPos = json["sr"]["posa"].getValue<float>();
             }
             if(json["sr"].hasChild("stat")){
+                lastStat = stat;
                 stat = json["sr"]["stat"].getValue<int>();
+                if (stat == 3) {
+                    mBusy = false;
+                    vconsole.print("finished last command");
+                }
             }
-        }else{
-        }
+        }else if (json.hasChild("r")) {
+            if(json["r"].hasChild("sr")){
+                JsonTree json2 = json["r"].getChild("sr");
+                if(json2.hasChild("posx")){
+                    xPos = json2["posx"].getValue<float>();
+                }
+                if(json2.hasChild("posy")){
+                    yPos = json2["posy"].getValue<float>();
+                }
+                if(json2.hasChild("posz")){
+                    zPos = json2["posz"].getValue<float>();
+                }
+                if(json2.hasChild("posa")){
+                    aPos = json2["posa"].getValue<float>();
+                }
+                if(json2.hasChild("stat")){
+                    stat = json2["stat"].getValue<int>();
+                    if (stat == 3) {
+                        mBusy = false;
+                        vconsole.print("finished last command");
+                    }
+                }
+            }else{
+                getNewStatusreport();
+            }
+        }else{};
     }
     catch( ci::Exception &exc ) {
         console() << "Failed to parse json, what: " << exc.what() << std::endl;
@@ -249,8 +259,16 @@ void tinyG::saveModuleOffsets(){
     console() << "saved new Offset to: " << localFile << endl;
 }
 
+void tinyG::setBusy(){
+    mBusy = true;
+}
 
-
+bool tinyG::isBusy(){
+    if(mBusy){
+        return true;
+    }
+    return false;
+};
 
 
 

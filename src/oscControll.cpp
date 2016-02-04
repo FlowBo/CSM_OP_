@@ -9,8 +9,12 @@
 #include "oscControll.hpp"
 
 void oscControll::setup( tinyG &t ){
-    newOffset   = false;
+    newOffset       = false;
+    mNewGoTo        = false;
+    mNewMainOffset  = false;
     newOffsetId = 99;
+    mNewGoToId  = 99;
+    
     console() << "OSC is listening to PORT: "  << PORT << endl;
     tiny = &t;
     mReceiver.setListener( "/move/x", [&] ( const osc::Message &msg ) {
@@ -30,11 +34,16 @@ void oscControll::setup( tinyG &t ){
         tiny -> move("g0a");
     });
     mReceiver.setListener( "/info/statusReport", [&] ( const osc::Message &msg ) {
-        tiny -> waitForStatusReport(true);
-        tiny -> sendGcode("$sr");
+        tiny -> getNewStatusreport();
     });
     mReceiver.setListener( "/move/goto", [&] ( const osc::Message &msg ) {
-        tiny->gotoModule(std::atoi(msg[0].string().c_str()));
+        int id = std::atoi(msg[0].string().c_str());
+        stringstream ss;
+        ss << "GoTo Module -> " << id;
+        vconsole.print(ss.str());
+        mNewGoTo = true;
+        mNewGoToId = id;
+        
     });
     mReceiver.setListener( "/control/hold", [&] ( const osc::Message &msg ) {
         tiny->setFeedhold( !tiny->feedhold() );
@@ -48,10 +57,11 @@ void oscControll::setup( tinyG &t ){
         tiny -> sendGcode("g28.2x0y0z0");
     });
     mReceiver.setListener( "/offset/module", [&] ( const osc::Message &msg ) {
-//        tiny -> sendGcode("g28");
-//        tiny->setModuleOffest(std::atoi(msg[0].string().c_str()));
-        newOffset = std::atoi(msg[0].string().c_str());
+        newOffsetId = std::atoi(msg[0].string().c_str());
         newOffset = true;
+    });
+    mReceiver.setListener( "/offset/main", [&] ( const osc::Message &msg ) {
+        mNewMainOffset = true;
     });
     mReceiver.bind();
     mReceiver.listen();
@@ -62,6 +72,19 @@ int oscControll::getNewOffsetId(){
     return newOffsetId;
 }
 
+int oscControll::getNewGoToId(){
+    mNewGoTo = false;
+    return mNewGoToId;
+}
+
 void oscControll::update(){
     
+}
+
+bool oscControll::hasNewMainOffset(){
+    if (mNewMainOffset) {
+        mNewMainOffset = false;
+        return true;
+    }
+    return false;
 }

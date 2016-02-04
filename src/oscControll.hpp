@@ -25,8 +25,11 @@ public:
     void    update();
     float   stepSize;
     bool    hasNewOffset(){return newOffset;};
+    bool    hasNewGoTo(){return mNewGoTo;};
+    bool    hasNewMainOffset();
     int     getNewOffsetId();
-
+    int     getNewGoToId();
+    
 private:
 #if USE_UDP
     osc::ReceiverUdp mReceiver;
@@ -36,5 +39,8 @@ private:
     
     tinyG   *tiny;
     bool    newOffset;
+    bool    mNewGoTo;
+    bool    mNewMainOffset;
     int     newOffsetId;
+    int     mNewGoToId;
 };

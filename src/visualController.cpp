@@ -14,7 +14,7 @@ void visualController::setup(){
     mImage.getColorForMirrorId(29);
     mImage.getColorForMirrorId(899-29);
     mImage.getColorForMirrorId(899);
-    colorDifference(0);
+    getCurrentColorDifference(0);
     mTracker.setup();
     mCam.setKeystone(mTracker.getKeystone());
     
@@ -28,7 +28,7 @@ void visualController::update(){
     if(mTracker.newKeystone()){
         mCam.setKeystone(mTracker.getKeystone());
     }
-    colorDifference(0);
+    getCurrentColorDifference(0);
 }
 
 void visualController::draw(){
@@ -41,7 +41,7 @@ Color visualController::getColorOfMirror(int id){
     return mCam.getColorOfMirror(id);
 }
 
-void visualController::colorDifference(int id){
+double visualController::getCurrentColorDifference(int id){
     Color mirrorColor       = mCam.getColorOfMirror(id);
     Color imageColor        = mImage.getColorForMirrorId(id);
     vec3 vM                 = mirrorColor.get(CM_HSV);
@@ -62,11 +62,12 @@ void visualController::colorDifference(int id){
     float colorDistRGB      = distance(mirrorColor, imageColor);
     float colorDistHSV      = distance(mirrorColorHSV, imageColorHSV);
     float colorDistHSV2     = distance(mirrorColorHSV2, imageColorHSV2);
+    
 //    console() << "ID: " << id << " [RGB: " << colorDistRGB << "][HSV: " << colorDistHSV << "]" << endl;
     stringstream ss;
     ss << "ID: " << id << " [RGB: " << colorDistRGB << "][HSV: " << colorDistHSV << "][HSV2: " << colorDistHSV2 << "]";
-    vconsole.print(ss.str());
-    
-    
+//    vconsole.print(ss.str());
     
 }
+
+

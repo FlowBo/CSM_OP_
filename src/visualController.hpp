@@ -17,6 +17,7 @@ public:
     void draw();
     
     Color           getColorOfMirror(int id);
+    double          getCurrentColorDifference(int id);
     Surface8uRef    getCameraImage(){return mCam.getCameraImage();};
     
 private:
@@ -27,6 +28,5 @@ private:
     camera      mCam;
     tracking    mTracker;
     Img         mImage;
-    void colorDifference(int id);
     
 };

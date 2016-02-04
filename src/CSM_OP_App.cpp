@@ -43,7 +43,8 @@ void CSM_OP_App::keyDown(KeyEvent event){
         quit();
     }
     if (event.getChar() == KeyEvent::KEY_SPACE) {
-        vconsole.print(to_string(random()*10));
+        controller.toggleStart();
+//        vconsole.print(to_string(random()*10));
 //        writeImage(getAppPath() / "images" / "saveImage_" / ( toString( random()*10 ) + ".jpg" ), *vc.getCameraImage() );
     }
     if (event.getChar() == KeyEvent::KEY_a ){

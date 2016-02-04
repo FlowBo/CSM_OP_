@@ -699,4 +699,6 @@ dependencies: \
   ../../../Cinder/include/cinder/Capture.h \
   /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/tracking.hpp \
   /Users/florianborn/dev/Cinder/blocks/Warping/include/Warp.h \
-  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/Img.hpp
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/Img.hpp \
+  ../../../Cinder/include/cinder/Rand.h \
+  /Users/florianborn/dev/Cinder_Apps/CSM_OP_/src/Mirror.hpp
