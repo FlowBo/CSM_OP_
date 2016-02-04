@@ -73,10 +73,10 @@ private:
     int     statusInterval = READ_INTERVAL;
     
     //TinyG status
-    float   xPos  = 0;
-    float   yPos  = 0;
-    float   zPos  = 0;
-    float   aPos  = 0;
+    double   xPos  = 0;
+    double   yPos  = 0;
+    double   zPos  = 0;
+    double   aPos  = 0;
     int     stat  = 3;
     int     lastStat;
     

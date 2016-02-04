@@ -59,6 +59,8 @@ private:
     bool checkPositions();
     void getNextMirror();
     
+    bool areEqual(double a, double b);
+    
     tinyG               tiny;
     oscControll         osc;
     visualController    vc;

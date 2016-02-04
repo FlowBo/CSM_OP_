@@ -229,10 +229,12 @@ void MainController::run(){
                 
                 break;
             case SCREW_HOME:
+               
                 if(!checkPositions()){
                     nextCycle = lastCycle;//redo last Cycle
                     break;
                 }
+                
                 tiny.sendGcode("g28.2a0");
                 
                 nextAPos = 0.0;
@@ -279,9 +281,9 @@ void MainController::engageScrewCycle(){
         nextAPos = 180.0;
     }else{
         stringstream ss;
-        ss << "g1z" << Z_SCREW_DIST << "a180f400";
+        ss << "g1z11.8a180f400";
         tiny.sendGcode(ss.str());
-        nextZPos = Z_SCREW_DIST;
+        nextZPos = 11.8;
         nextAPos = 180.0;
     }
     
@@ -340,18 +342,22 @@ bool MainController::checkPositions(){
         stringstream ss;
         ss << "Tiny X: " << tiny.getXPos() << " Next X: " << nextXPos;
         vconsole.print(ss.str());
-        ss << "";
+        return false;
+    }
+    if(tiny.getYPos() != nextYPos){
+        stringstream ss;
         ss << "Tiny Y: " << tiny.getYPos() << " Next Y: " << nextYPos;
         vconsole.print(ss.str());
         return false;
     }
-    if(tiny.getYPos() != nextYPos){
-        return false;
-    }
-    if(tiny.getZPos() != nextZPos){
+    if(!areEqual(tiny.getYPos(), nextYPos)){
+        vconsole.print("Z not equal");
         return false;
     }
     if(tiny.getAPos() != nextAPos){
+        stringstream ss;
+        ss << "Tiny A: " << tiny.getAPos() << " Next A: " << nextAPos;
+        vconsole.print(ss.str());
         return false;
     }
     return true;
@@ -394,5 +400,8 @@ void MainController::toggleStart(){
     startMachine = !startMachine;
 }
 
-
+bool MainController::areEqual(double a, double b)
+{
+    return fabs(a - b) < EPSILON;
+}
 
