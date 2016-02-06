@@ -25,9 +25,11 @@ public:
     void    update();
     float   stepSize;
     bool    hasNewOffset(){return newOffset;};
+    bool    hasNewOffsetTR(){return newOffsetTR;};
     bool    hasNewGoTo(){return mNewGoTo;};
     bool    hasNewMainOffset();
     int     getNewOffsetId();
+    int     getNewOffsetIdTR();
     int     getNewGoToId();
     
 private:
@@ -39,8 +41,10 @@ private:
     
     tinyG   *tiny;
     bool    newOffset;
+    bool    newOffsetTR;
     bool    mNewGoTo;
     bool    mNewMainOffset;
     int     newOffsetId;
+    int     newOffsetIdTR;
     int     mNewGoToId;
 };

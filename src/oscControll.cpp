@@ -10,9 +10,11 @@
 
 void oscControll::setup( tinyG &t ){
     newOffset       = false;
+    newOffsetTR       = false;
     mNewGoTo        = false;
     mNewMainOffset  = false;
     newOffsetId = 99;
+    newOffsetIdTR = 99;
     mNewGoToId  = 99;
     
     console() << "OSC is listening to PORT: "  << PORT << endl;
@@ -60,6 +62,10 @@ void oscControll::setup( tinyG &t ){
         newOffsetId = std::atoi(msg[0].string().c_str());
         newOffset = true;
     });
+    mReceiver.setListener( "/offset/moduleTR", [&] ( const osc::Message &msg ) {
+        newOffsetIdTR = std::atoi(msg[0].string().c_str());
+        newOffsetTR = true;
+    });
     mReceiver.setListener( "/offset/main", [&] ( const osc::Message &msg ) {
         mNewMainOffset = true;
     });
@@ -70,6 +76,12 @@ void oscControll::setup( tinyG &t ){
 int oscControll::getNewOffsetId(){
     newOffset = false;
     return newOffsetId;
+}
+
+
+int oscControll::getNewOffsetIdTR(){
+    newOffsetTR = false;
+    return newOffsetIdTR;
 }
 
 int oscControll::getNewGoToId(){

@@ -100,6 +100,8 @@ vec2 camera::interpolateVec(dvec2 vec){
     float bottomX   = lmap(vec.x, 0.0, 1.0, mBLsurface.x, mBRsurface.x);
     float leftY     = lmap(vec.y, 0.0, 1.0, mTLsurface.y, mBLsurface.y);
     float rightY    = lmap(vec.y, 0.0, 1.0, mTRsurface.y, mBRsurface.y);
+    
+    
     // interpolation
     vec2 interpolatedVector = vec2(lerp(topX, bottomX, vec.y), lerp(leftY, rightY, vec.x) );
     vec2 v = vec2(interpolatedVector.x ,interpolatedVector.y);

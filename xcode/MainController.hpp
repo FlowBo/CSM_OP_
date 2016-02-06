@@ -12,8 +12,8 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-#define ANGLE_STEPS 15
-#define MAX_ROTATION 4320
+#define ANGLE_STEPS 30
+#define MAX_ROTATION 3980
 #define SCREW_GAP 16.75
 #define Z_SCREW_DIST 11.8
 
@@ -37,18 +37,23 @@ public:
     void update();
     void draw();
     void setModuleOffset(int id);
+    void setModuleOffsetTR(int id);
     void toggleStart();
     
 private:
     
     vector<dvec2> mMirrorPosition;
     vector<dvec2> mModuleOffsets;
+    vector<dvec2> mModuleOffsetsTR;
     vector<Mirror> mCurrentMirrorColors;
     
+    dvec2 rotateVector(dvec2 v , float degree);
     
     int mCurrentMirrorId;
     double mCurrentMirrorRotation;
     dvec2 mMainOffset;
+    
+    dvec2 interpolateVec(dvec2 vec, dvec2 ORIGIN, dvec2 BR,dvec2 TL,dvec2 TR);
     
     void recalculateOffsets();
     void setMainOffset();

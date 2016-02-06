@@ -32,6 +32,9 @@ void MainController::update(){
     if(osc.hasNewOffset()){
         setModuleOffset(osc.getNewOffsetId());
     }
+    if(osc.hasNewOffsetTR()){
+        setModuleOffsetTR(osc.getNewOffsetIdTR());
+    }
     if(osc.hasNewGoTo()){
         int id = osc.getNewGoToId();
         dvec2 v = mModuleOffsets.at(id);
@@ -67,19 +70,23 @@ void MainController::loadMainOffset(){
 void MainController::loadOffset(){
     JsonTree mJson;
     try{
-        mJson = JsonTree( app::loadAsset( "module_offsets.json" ));
+        mJson = JsonTree( app::loadAsset( "module_offsets_TR.json" ));
         mModuleOffsets.clear();
         for (auto &module : mJson) {
             double id = module["id"].getValue<int>();
-            double x = module["xPos"].getValue<double>();
-            double y = module["yPos"].getValue<double>();
+            double x = module["origin"][0].getValue<double>();
+            double y = module["origin"][1].getValue<double>();
+            double xTR = module["TR"][0].getValue<double>();
+            double yTR = module["TR"][1].getValue<double>();
             dvec2 position = dvec2(x,y);
+            dvec2 positionTR = dvec2(xTR,yTR);
             mModuleOffsets.push_back(position);
+            mModuleOffsetsTR.push_back(positionTR);
             std::stringstream ss;
             if(id < 10){
-                ss << "id_0" << id << " - " << position;
+                ss << "id_0" << id << " - " << position << " TR: " << positionTR;
             }else{
-                ss << "id_" << id << " - " << position;
+                ss << "id_" << id << " - " << position << " TR: " << positionTR;
             }
             vconsole.print(ss.str());
             //            value = 0;
@@ -100,16 +107,36 @@ void MainController::setModuleOffset(int id){
     console() << "module [" << id << "] new Offset Position is [" << mModuleOffsets.at(id) << "]" << endl;
     saveCurrentOffset();
 }
+void MainController::setModuleOffsetTR(int id){
+    if(mModuleOffsetsTR.size() < id){
+        console() << "entered id [" << id << "] over 24 or didn't loaded old positions!";
+        return;
+    }
+    mModuleOffsetsTR.at(id).x = tiny.getXPos();
+    mModuleOffsetsTR.at(id).y = tiny.getYPos();
+    console() << "module [" << id << "] new Offset Position is [" << mModuleOffsetsTR.at(id) << "]" << endl;
+    saveCurrentOffset();
+}
 
 void MainController::saveCurrentOffset(){
-    fs::path localFile = getAssetPath("") / "module_offsets.json";
+    fs::path localFile = getAssetPath("") / "module_offsets_TR.json";
     JsonTree mNewJson;
     int id = 0;
     for (auto &module : mModuleOffsets) {
         JsonTree t;
         t.addChild( JsonTree( "id", id));
-        t.addChild( JsonTree( "xPos", module.x));
-        t.addChild( JsonTree( "yPos", module.y));
+        //        t.addChild( JsonTree( "xPos", module.x));
+        //        t.addChild( JsonTree( "yPos", module.y));
+        dvec2 trOff = mModuleOffsetsTR.at(id);
+        JsonTree origin = JsonTree::makeArray("origin");
+        JsonTree trJSON = JsonTree::makeArray("TR");
+        origin.addChild(JsonTree("",module.x));
+        origin.addChild(JsonTree("",module.y));
+        trJSON.addChild(JsonTree("",trOff.x));
+        trJSON.addChild(JsonTree("",trOff.y));
+        
+        t.addChild( trJSON );
+        t.addChild( origin);
         mNewJson.addChild(t);
         id++;
     }
@@ -118,16 +145,55 @@ void MainController::saveCurrentOffset(){
     console() << "saved new Offset to: " << localFile << endl;
 }
 
+dvec2 MainController::rotateVector(dvec2 v , float degree)
+{
+    float cs = cos(toRadians(degree));
+    float sn = sin(toRadians(degree));
+    dvec2 newVec;
+    newVec.x = v.x * cs - v.y * sn;
+    newVec.y = v.x * sn + v.y * cs;
+    return newVec;
+}
+
+dvec2 MainController::interpolateVec(dvec2 vec, dvec2 ORIGIN, dvec2 BR,dvec2 TL,dvec2 TR){
+    // remapping
+    float topX      = lmap(vec.x, 0.0, 5.0, TL.x, TR.x);
+    float bottomX   = lmap(vec.x, 0.0, 5.0, ORIGIN.x, BR.x);
+    float leftY     = lmap(vec.y, 0.0, 5.0, ORIGIN.y, TL.y);
+    float rightY    = lmap(vec.y, 0.0, 5.0, BR.y, TR.y);
+    // interpolation
+    vec2 interpolatedVector = vec2(lerp(bottomX, topX, (float)vec.y/5.0), lerp(leftY, rightY, (float)vec.x/5.0) );
+    dvec2 v = vec2(interpolatedVector.x ,interpolatedVector.y);
+    return v;
+}
+
 void MainController::calcMirrorPosPerModul()
 {
     vector<dvec2> tempPos;
     mMirrorPosition.clear();
+    int c = 0;
     for(int i = 0 ; i < mModuleOffsets.size(); i++)
     {
+        dvec2 TR = mModuleOffsetsTR.at(c);
+        c++;
         dvec2 origin = mModuleOffsets.at(i);
-        for (int y = 0; y < 6; y++) {
+        dvec2 TL;
+        dvec2 BR;
+        dvec2 center = (TR-origin);
+        center /= 2;
+        
+        BR = origin + center + rotateVector(center, -90);
+        TL = origin + center + rotateVector(center, 90);
+        
+        
+              for (int y = 0; y < 6; y++) {
             for(int x = 0; x < 6; x++){
-                tempPos.push_back(dvec2(origin.x + (x * SCREW_GAP),origin.y + (y * SCREW_GAP)));
+                dvec2 temp = dvec2(x,y);
+                dvec2 in = interpolateVec(temp, origin, BR, TL, TR);
+                tempPos.push_back(in);
+//                dvec2 in = dvec2(origin.x + (x * SCREW_GAP),origin.y + (y * SCREW_GAP));
+//                tempPos.push_back(in);
+//                console() << "in: " << in << endl;
             }
         }
         if((i+1)%5 == 0){
@@ -186,7 +252,7 @@ void MainController::run(){
             }
             case REST:
                 if(!checkPositions()){
-                     cycle = lastCycle;//redo last Cycle
+                    cycle = lastCycle;//redo last Cycle
                     break;
                 }
                 vconsole.print("maschine is resting");
@@ -229,7 +295,7 @@ void MainController::run(){
                 
                 break;
             case SCREW_HOME:
-               
+                
                 if(!checkPositions()){
                     nextCycle = lastCycle;//redo last Cycle
                     break;
@@ -270,7 +336,13 @@ void MainController::run(){
     }
 }
 void MainController::getNextMirror(){
-    mCurrentMirrorId = random.nextInt(0,5);
+    //
+    int row     = Rand::randInt(0, 5);
+    row *= 30;
+    int colum   = Rand::randInt(0, 5);
+    int nID     = row+colum;
+    nID         = 5*30+5;
+    mCurrentMirrorId = nID;
     //    mCurrentMirrorId = 4;
 }
 
@@ -281,10 +353,10 @@ void MainController::engageScrewCycle(){
         nextAPos = 180.0;
     }else{
         stringstream ss;
-        ss << "g1z11.8a180f400";
+        ss << "g1z11.8a720f100";
         tiny.sendGcode(ss.str());
         nextZPos = 11.8;
-        nextAPos = 180.0;
+        nextAPos = 720.0;
     }
     
 }
@@ -326,7 +398,7 @@ void MainController::scanColorCycle(){
         }
         mCurrentMirrorRotation += ANGLE_STEPS;
         stringstream ss;
-        ss << "g1a" << mCurrentMirrorRotation << "f4200";
+        ss << "g1a" << mCurrentMirrorRotation << "f4800";
         tiny.sendGcode(ss.str());
         nextAPos = mCurrentMirrorRotation;
     }else{
@@ -339,25 +411,25 @@ void MainController::scanColorCycle(){
 
 bool MainController::checkPositions(){
     if(tiny.getXPos() != nextXPos){
-        stringstream ss;
-        ss << "Tiny X: " << tiny.getXPos() << " Next X: " << nextXPos;
-        vconsole.print(ss.str());
+        //        stringstream ss;
+        //        ss << "Tiny X: " << tiny.getXPos() << " Next X: " << nextXPos;
+        //        vconsole.print(ss.str());
         return false;
     }
     if(tiny.getYPos() != nextYPos){
-        stringstream ss;
-        ss << "Tiny Y: " << tiny.getYPos() << " Next Y: " << nextYPos;
-        vconsole.print(ss.str());
+        //        stringstream ss;
+        //        ss << "Tiny Y: " << tiny.getYPos() << " Next Y: " << nextYPos;
+        //        vconsole.print(ss.str());
         return false;
     }
     if(!areEqual(tiny.getYPos(), nextYPos)){
-        vconsole.print("Z not equal");
+        //        vconsole.print("Z not equal");
         return false;
     }
     if(tiny.getAPos() != nextAPos){
-        stringstream ss;
-        ss << "Tiny A: " << tiny.getAPos() << " Next A: " << nextAPos;
-        vconsole.print(ss.str());
+        //        stringstream ss;
+        //        ss << "Tiny A: " << tiny.getAPos() << " Next A: " << nextAPos;
+        //        vconsole.print(ss.str());
         return false;
     }
     return true;
